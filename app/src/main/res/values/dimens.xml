@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="rv_padding_top">15dp</dimen>
+    <dimen name="bird_image_width">100dp</dimen>
+    <dimen name="bird_image_height">100dp</dimen>
+    <dimen name="bird_title_layout_margin_start">10dp</dimen>
+</resources>
