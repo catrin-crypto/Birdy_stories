@@ -9,13 +9,16 @@
     <ImageView
         android:id="@+id/bird_image"
         android:layout_width="@dimen/bird_image_width"
-        android:layout_height="@dimen/bird_image_height"
+        android:layout_height="wrap_content"
         android:cropToPadding="true"/>
 
     <TextView
         android:id="@+id/bird_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/text_size"
+        android:textStyle="bold"
         android:layout_marginStart="@dimen/bird_title_layout_margin_start"/>
 
 </LinearLayout>
