@@ -17,14 +17,12 @@ data class WikiBird(
     @ColumnInfo
     @SerializedName("extract")
     val extract: String?,
-    @ColumnInfo
-    @Embedded
+    @Embedded(prefix = "thumb_")
     @SerializedName("thumbnail")
-    val thumbnail: ThumbnailImage,
-    @ColumnInfo
-    @Embedded
+    val thumbnail: ThumbnailImage?,
+    @Embedded(prefix = "orig_")
     @SerializedName("original")
-    val original: OriginalImage
+    val original: OriginalImage?
 )
 
 class ThumbnailConverter {
@@ -43,11 +41,11 @@ class ThumbnailConverter {
 
 data class ThumbnailImage(
     @SerializedName("source")
-    val source : String,
+    val sourceT : String,
     @SerializedName("width")
-    val width : Int,
+    val widthT : Int,
     @SerializedName("height")
-    val height : Int
+    val heightT : Int
 )
 class OriginalConverter {
     @TypeConverter
@@ -64,17 +62,17 @@ class OriginalConverter {
 }
 data class OriginalImage(
     @SerializedName("source")
-    val source : String,
+    val sourceO : String,
     @SerializedName("width")
-    val width : Int,
+    val widthO : Int,
     @SerializedName("height")
-    val height : Int
+    val heightO : Int
 )
 
 
 data class WikiBirdQueryResponse(
     @SerializedName("batchcomplete")
-    val batchcomplete : String,
+    val batchcomplete : String?,
     @SerializedName("query")
     val query : WikiBirdQueryContainer
 )

@@ -1,14 +1,12 @@
 package com.example.birdystories.data.bird.datasource
 
 import com.example.birdystories.data.api.WikiBird
-import com.example.birdystories.data.api.WikiBirdName
 import com.example.birdystories.data.storage.WikiBirdsDB
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
 
-class WikiBirdCacheDataSourceImpl (
+class WikiBirdsCacheDataSourceImpl (
     private val wikiBirdsDb : WikiBirdsDB
-) : WikiBirdCacheDataSource{
+) : WikiBirdsCacheDataSource{
 
     override fun retain(wikiBirds: List<WikiBird>): Observable<List<WikiBird>> =
         wikiBirdsDb
@@ -23,7 +21,7 @@ class WikiBirdCacheDataSourceImpl (
     override fun getAllBirds(): Observable<List<WikiBird>> =
         wikiBirdsDb.getWikiBirdDao().getBirds()
 
-    override fun getWikiBirdById(id: Int): Observable<WikiBird> =
-        wikiBirdsDb.getWikiBirdDao().getBirdByPageId(id)
+    override fun getWikiBirdByTitle(title: String): Observable<WikiBird> =
+        wikiBirdsDb.getWikiBirdDao().getBirdByPageTitle(title)
 }
 

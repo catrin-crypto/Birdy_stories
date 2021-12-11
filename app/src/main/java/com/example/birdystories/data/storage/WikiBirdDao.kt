@@ -14,8 +14,8 @@ interface WikiBirdDao {
     @Query("SELECT * FROM wiki_birds")
     fun getBirds(): Observable<List<WikiBird>>
 
-    @Query("SELECT * FROM wiki_birds WHERE pageid LIKE :pageId LIMIT 1")
-    fun getBirdByPageId(pageId: Int): Observable<WikiBird>
+    @Query("SELECT * FROM wiki_birds WHERE title LIKE :pageTitle LIMIT 1")
+    fun getBirdByPageTitle(pageTitle: String): Observable<WikiBird>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun retain(wikiBirds: List<WikiBird>): Completable

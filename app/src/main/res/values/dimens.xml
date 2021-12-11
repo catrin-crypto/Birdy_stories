@@ -7,4 +7,5 @@
     <dimen name="text_size">13sp</dimen>
     <dimen name="bird_title_margin_top">15dp</dimen>
     <dimen name="bird_title_padding">10dp</dimen>
+    <dimen name="rv_item_divider">1dp</dimen>
 </resources>

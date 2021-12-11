@@ -15,7 +15,7 @@ object WikiApiFactory {
 
     private val wikiBirdApi: WikiBirdApi by lazy {
         Retrofit.Builder()
-            .baseUrl("https://ru.wikipedia.org/w/api.php")
+            .baseUrl("https://ru.wikipedia.org/w/")
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor(WikiApiErrorInterceptor)

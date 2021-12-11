@@ -1,11 +1,12 @@
 package com.example.birdystories.presentation.birds
 
+import com.example.birdystories.data.api.WikiBird
 import com.example.birdystories.presentation.ScreenView
 import moxy.viewstate.strategy.alias.SingleState
 
-interface BirdsView interface UsersView : ScreenView {
+interface BirdsView : ScreenView {
 
-
-  //TODO  @SingleState fun showUsers(users: List<GitHubUserViewModel>)
+    @SingleState
+    fun showBirds(birds: List<WikiBird>)
 
 }

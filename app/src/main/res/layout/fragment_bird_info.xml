@@ -1,48 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.bird.BirdInfoFragment">
 
-    <TextView
-        android:id="@+id/bird_title"
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_of_the_bird"
-        android:textSize="@dimen/text_size"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/bird_title_margin_top"
-        android:padding="@dimen/bird_title_padding"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <ImageView
-        android:id="@+id/bird_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/bird_title"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/photo_of_the_bird"/>
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/bird_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bird_photo"
-        android:textSize="@dimen/text_size"
-        android:contentDescription="@string/description_of_the_bird"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/bird_title_margin_top"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bird_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/bird_title_padding"
+                android:text="@string/title_of_the_bird"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/bird_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/photo_of_the_bird"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bird_title" />
+
+            <TextView
+                android:id="@+id/bird_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/description_of_the_bird"
+                android:textSize="@dimen/text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bird_photo" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/wiki_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:textSize="@dimen/text_size"
+        android:layout_margin="@dimen/bird_title_padding"
         android:text="@string/more_details_on_wiki"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="@dimen/bird_title_padding"/>
+        android:textSize="@dimen/text_size"
+        app:layout_constraintTop_toBottomOf="@+id/scroll"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

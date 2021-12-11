@@ -1,12 +1,13 @@
 package com.example.birdystories.data.api
 
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface WikiBirdApi {
-    @GET()
+    @GET("api.php")
     fun fetchAllBirds(@Query("action") action:String = "parse",
                    @Query("format") format:String = "json",
                    @Query("page") page:String = "Список_птиц_России",
@@ -19,9 +20,9 @@ interface WikiBirdApi {
                    @Query("mainpage") mainpage:Int = 1,
                    @Query("utf8") utf8:Int = 1,
                    @Query("formatversion") formatversion:Int = 2
-    ): Single<WikiBirdParseResponse>
+    ): Observable<WikiBirdParseResponse>
 
-    @GET()
+    @GET("api.php")
     fun fetchBirdsByPageNames(
         @Query("titles") titles:String,
         @Query("pithumbsize") pithumbsize:Int = 200,
@@ -36,6 +37,6 @@ interface WikiBirdApi {
         @Query("piprop") piprop:String = "thumbnail|name|original",
         @Query("pilimit") pilimit:Int = 50
 
-    ): Single<WikiBirdQueryResponse>
+    ): Observable<WikiBirdQueryResponse>
 
 }

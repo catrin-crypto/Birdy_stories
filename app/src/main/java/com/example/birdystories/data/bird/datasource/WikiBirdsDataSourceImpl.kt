@@ -2,21 +2,38 @@ package com.example.birdystories.data.bird.datasource
 
 import com.example.birdystories.data.api.WikiBird
 import com.example.birdystories.data.api.WikiBirdApi
-import io.reactivex.rxjava3.core.Single
-import java.lang.StringBuilder
-import java.util.concurrent.TimeUnit
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.kotlin.toObservable
+import io.reactivex.rxjava3.schedulers.Schedulers
+
 
 class WikiBirdsDataSourceImpl(
-private val wikiBirdApi : WikiBirdApi
-) : WikiBirdDataSource{
+    private val wikiBirdApi: WikiBirdApi
+) : WikiBirdsDataSource {
 
-    override fun getWikiBirds(): Single<List<WikiBird>> {
+    override fun getWikiBirds(): Observable<List<WikiBird>> =
         wikiBirdApi
             .fetchAllBirds()
-
-//TODO return, flatMap
-                }
+            .observeOn(Schedulers.io())
+            .flatMap { response ->
+                Observable.fromArray(response.parse.links)
             }
-
-
-
+            .filter { (wikiBirdName) -> wikiBirdName.exists }
+            .flatMapIterable { list -> list }
+            .map { wikiBirdName -> wikiBirdName.title }
+            .filter{ s->!(s.firstOrNull { it in 'А'..'Я' || it in 'а'..'я'  } == null) }
+            .filter{s->!s.startsWith("Список") }
+            .toList()
+            .toObservable()
+            .flatMap { birdsNames ->
+                birdsNames.chunked(19).toObservable()
+            }
+            .concatMap( { pagesNames ->
+                wikiBirdApi.fetchBirdsByPageNames(
+                    pagesNames.joinToString("|")
+                )
+            },100,Schedulers.io())
+            .flatMap{response->Observable.fromArray(response.query
+                .pages.values.toList())
+            }
+}

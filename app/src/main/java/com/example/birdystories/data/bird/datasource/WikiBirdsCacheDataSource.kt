@@ -4,9 +4,9 @@ import com.example.birdystories.data.api.WikiBird
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
-interface WikiBirdCacheDataSource {
+interface WikiBirdsCacheDataSource {
     fun getAllBirds(): Observable<List<WikiBird>>
-    fun getWikiBirdById(id: Int): Observable<WikiBird>
+    fun getWikiBirdByTitle(title: String): Observable<WikiBird>
     fun retain(wikiBirds: List<WikiBird>): Observable<List<WikiBird>>
 
 }

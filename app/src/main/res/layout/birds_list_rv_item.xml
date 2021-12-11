@@ -2,23 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:foreground="?attr/selectableItemBackground"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/bird_image"
         android:layout_width="@dimen/bird_image_width"
         android:layout_height="wrap_content"
-        android:cropToPadding="true"/>
+        android:cropToPadding="true" />
 
     <TextView
         android:id="@+id/bird_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/bird_title_layout_margin_start"
         android:gravity="center"
         android:textSize="@dimen/text_size"
-        android:textStyle="bold"
-        android:layout_marginStart="@dimen/bird_title_layout_margin_start"/>
+        android:textStyle="bold" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rv_item_divider"
+        android:background="@android:color/darker_gray"/>
 </LinearLayout>
