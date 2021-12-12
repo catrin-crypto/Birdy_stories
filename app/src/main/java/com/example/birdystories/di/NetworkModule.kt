@@ -1,19 +1,29 @@
-package com.example.birdystories.data.api
+package com.example.birdystories.di
 
+import com.example.birdystories.data.api.WikiApiErrorInterceptor
+import com.example.birdystories.data.api.WikiBirdApi
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import dagger.Module
+import dagger.Provides
+import dagger.Reusable
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-object WikiApiFactory {
-    private val gson: Gson =
+@Module
+class NetworkModule {
+
+    @Provides
+    fun provideGson(): Gson =
         GsonBuilder()
             .setPrettyPrinting()
             .create()
 
-    private val wikiBirdApi: WikiBirdApi by lazy {
+    @Reusable
+    @Provides
+    fun provideWikiBirdApi(gson: Gson): WikiBirdApi =
         Retrofit.Builder()
             .baseUrl("https://ru.wikipedia.org/w/")
             .client(
@@ -25,7 +35,4 @@ object WikiApiFactory {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(WikiBirdApi::class.java)
-    }
-
-    fun create(): WikiBirdApi = wikiBirdApi
 }

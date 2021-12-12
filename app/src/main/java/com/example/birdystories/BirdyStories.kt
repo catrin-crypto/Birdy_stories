@@ -1,28 +1,22 @@
 package com.example.birdystories
 
-import android.annotation.SuppressLint
-import android.app.Application
-import android.content.Context
+import com.example.birdystories.di.DaggerBirdyStoriesComponent
 import com.example.birdystories.presentation.navigation.CustomRouter
+import com.example.birdystories.schedulers.SchedulersFactory
 import com.github.terrakok.cicerone.Cicerone
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
-class BirdyStories:Application() {
-    @SuppressLint("StaticFieldLeak")
-    object ContextHolder { lateinit var context: Context }
-
-    companion object Navigation {
-
-        private val cicerone: Cicerone<CustomRouter> by lazy {
-            Cicerone.create(CustomRouter())
-        }
-
-        val navigatorHolder = cicerone.getNavigatorHolder()
-        val router = cicerone.router
-
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        ContextHolder.context = this
-    }
+class BirdyStories : DaggerApplication() {
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+        DaggerBirdyStoriesComponent
+            .builder()
+            .withContext(applicationContext)
+            .withSchedulers(SchedulersFactory.create())
+            .apply {
+                val cicerone = Cicerone.create(CustomRouter())
+                withRouter(cicerone.router)
+                withNavigatorHolder(cicerone.getNavigatorHolder())
+            }
+            .build()
 }

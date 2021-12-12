@@ -9,18 +9,19 @@ import com.example.birdystories.click
 import com.example.birdystories.data.api.WikiBird
 import com.example.birdystories.databinding.BirdsListRvItemBinding
 
-class BirdsListViewHolder(view: View): RecyclerView.ViewHolder(view) {
-    private val viewBinding:BirdsListRvItemBinding by viewBinding()
+class BirdsListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    private val viewBinding: BirdsListRvItemBinding by viewBinding()
 
-    fun bind(model: WikiBird,delegate : BirdsListRvAdapter.Delegate?) {
+    fun bind(model: WikiBird, delegate: BirdsListRvAdapter.Delegate?) {
         with(viewBinding) {
-            model.thumbnail?.let{
-            Glide.with(birdImage)
-                .load(it.sourceT)
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .into(birdImage)}
+            model.thumbnail?.let {
+                Glide.with(birdImage)
+                    .load(it.sourceT)
+                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                    .into(birdImage)
+            }
             birdTitle.text = model.title
-            root.click{delegate?.onBirdPicked(model)}
+            root.click { delegate?.onBirdPicked(model) }
         }
     }
 }

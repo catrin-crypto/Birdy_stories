@@ -8,7 +8,7 @@ import com.example.birdystories.data.api.ThumbnailConverter
 import com.example.birdystories.data.api.WikiBird
 
 @Database(exportSchema = false, entities = [WikiBird::class], version = 1)
-@TypeConverters(ThumbnailConverter::class,OriginalConverter::class)
+@TypeConverters(ThumbnailConverter::class, OriginalConverter::class)
 abstract class WikiBirdsDB : RoomDatabase() {
     abstract fun getWikiBirdDao(): WikiBirdDao
 }

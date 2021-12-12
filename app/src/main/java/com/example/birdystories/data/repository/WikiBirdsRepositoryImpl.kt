@@ -4,8 +4,10 @@ import com.example.birdystories.data.api.WikiBird
 import com.example.birdystories.data.bird.datasource.WikiBirdsCacheDataSource
 import com.example.birdystories.data.bird.datasource.WikiBirdsDataSource
 import io.reactivex.rxjava3.core.Observable
+import javax.inject.Inject
 
-class WikiBirdsRepositoryImpl(
+class WikiBirdsRepositoryImpl
+@Inject constructor(
     private val wikiBirdsDataSource: WikiBirdsDataSource,
     private val wikiBirdsCacheDataSource: WikiBirdsCacheDataSource,
 ) : WikiBirdsRepository {
@@ -15,8 +17,8 @@ class WikiBirdsRepositoryImpl(
                 .getAllBirds(),
             wikiBirdsDataSource
                 .getWikiBirds()
-                .flatMap {
-                        birds -> wikiBirdsCacheDataSource.retain(birds)
+                .flatMap { birds ->
+                    wikiBirdsCacheDataSource.retain(birds)
                 }
 
         )

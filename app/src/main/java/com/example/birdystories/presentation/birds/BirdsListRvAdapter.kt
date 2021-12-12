@@ -7,8 +7,8 @@ import com.example.birdystories.R.layout.birds_list_rv_item
 import com.example.birdystories.data.api.WikiBird
 
 
-
-class BirdsListRvAdapter(private val delegate: Delegate?): ListAdapter<WikiBird, BirdsListViewHolder>(BirdsDiff) {
+class BirdsListRvAdapter(private val delegate: Delegate?) :
+    ListAdapter<WikiBird, BirdsListViewHolder>(BirdsDiff) {
 
     interface Delegate {
         fun onBirdPicked(bird: WikiBird)
