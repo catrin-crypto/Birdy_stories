@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Birdy stories</string>
+    <string name="title_of_the_bird">Title of the bird</string>
+    <string name="description_of_the_bird">description of the bird</string>
+    <string name="photo_of_the_bird">photo_of_the_bird</string>
+    <string name="more_details_on_wiki">More details on Wiki</string>
 </resources>
