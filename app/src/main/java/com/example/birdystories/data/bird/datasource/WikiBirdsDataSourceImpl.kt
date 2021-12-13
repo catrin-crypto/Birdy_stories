@@ -23,7 +23,8 @@ class WikiBirdsDataSourceImpl
             .filter { (wikiBirdName) -> wikiBirdName.exists }
             .flatMapIterable { list -> list }
             .map { wikiBirdName -> wikiBirdName.title }
-            .filter { s -> !(s.firstOrNull { it in 'А'..'Я' || it in 'а'..'я' } == null) }
+            .filter { s -> s.firstOrNull { it in 'А'..'Я' || it in 'а'..'я' } != null }
+            .filter { s -> !s.contains(':')}
             .filter { s -> !s.startsWith("Список") }
             .toList()
             .toObservable()
@@ -41,4 +42,8 @@ class WikiBirdsDataSourceImpl
                         .pages.values.toList()
                 )
             }
+            .flatMapIterable { list -> list }
+            .filter{bird-> bird.extract!=null && bird.extract != ""}
+            .toList()
+            .toObservable()
 }
