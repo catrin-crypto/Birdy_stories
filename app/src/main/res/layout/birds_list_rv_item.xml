@@ -23,6 +23,7 @@
         android:gravity="center"
         android:textSize="@dimen/rv_bird_title_textsize"
         android:textStyle="bold"
+        android:maxWidth="@dimen/max_width"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/bird_image"
         app:layout_constraintTop_toTopOf="parent" />

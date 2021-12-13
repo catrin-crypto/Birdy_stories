@@ -44,6 +44,6 @@ class WikiBirdsDataSourceImpl
             }
             .flatMapIterable { list -> list }
             .filter{bird-> bird.extract!=null && bird.extract != ""}
-            .toList()
+            .toSortedList{bird,bird2->bird.title.compareTo(bird2.title)}
             .toObservable()
 }

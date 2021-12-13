@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.ScaleAnimation
+import android.view.animation.TranslateAnimation
+import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.birdystories.R.layout.fragment_bird_info
 import com.example.birdystories.databinding.FragmentBirdInfoBinding
@@ -78,6 +80,10 @@ class BirdInfoFragment : AbsFragment(fragment_bird_info), BirdView {
                     .into(this.birdPhoto, object : Callback {
                         override fun onSuccess() {
                             scaleView(birdPhoto, 0.01f, 1f)
+                            birdPhoto.getLayoutParams().height = RelativeLayout.LayoutParams.WRAP_CONTENT
+                            birdPhoto.requestLayout()
+                            birdDescription.requestLayout()
+                            wikiBtn.requestLayout()
                         }
 
                         override fun onError(e: Exception?) {

@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.core.Observable
 @Dao
 interface WikiBirdDao {
 
-    @Query("SELECT * FROM wiki_birds")
+    @Query("SELECT * FROM wiki_birds ORDER BY title ASC")
     fun getBirds(): Observable<List<WikiBird>>
 
     @Query("SELECT * FROM wiki_birds WHERE title LIKE :pageTitle LIMIT 1")
