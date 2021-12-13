@@ -4,11 +4,12 @@
     <dimen name="bird_image_width">200dp</dimen>
     <dimen name="bird_image_height">200dp</dimen>
     <dimen name="bird_title_layout_margin_start">10dp</dimen>
-    <dimen name="text_size">13sp</dimen>
+    <dimen name="text_size">16sp</dimen>
     <dimen name="bird_title_margin_top">15dp</dimen>
     <dimen name="bird_title_padding">10dp</dimen>
     <dimen name="rv_item_divider">1dp</dimen>
     <dimen name="initial_imv_size">50dp</dimen>
-    <dimen name="header_text_size">15sp</dimen>
+    <dimen name="header_text_size">19sp</dimen>
     <dimen name="bird_description_layout_margin">4dp</dimen>
+    <dimen name="rv_bird_title_textsize">15sp</dimen>
 </resources>
