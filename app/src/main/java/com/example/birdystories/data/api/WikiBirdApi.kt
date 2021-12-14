@@ -28,6 +28,7 @@ interface WikiBirdApi {
         @Query("action") action: String = "query",
         @Query("format") format: String = "json",
         @Query("prop") prop: String = "extracts|pageimages",
+        @Query("redirects") redirects:Int = 1,
         @Query("utf8") utf8: Int = 1,
         @Query("exsentences") exsentences: Int = 10,
         @Query("exintro") exintro: Int = 1,

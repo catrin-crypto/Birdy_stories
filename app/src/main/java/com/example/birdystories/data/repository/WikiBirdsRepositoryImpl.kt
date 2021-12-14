@@ -12,7 +12,7 @@ class WikiBirdsRepositoryImpl
     private val wikiBirdsCacheDataSource: WikiBirdsCacheDataSource,
 ) : WikiBirdsRepository {
     override fun getWikiBirds(): Observable<List<WikiBird>> =
-        Observable.merge(
+        Observable.mergeDelayError(
             wikiBirdsCacheDataSource
                 .getAllBirds(),
             wikiBirdsDataSource

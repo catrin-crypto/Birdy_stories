@@ -24,13 +24,12 @@ class BirdsListPresenter
         disposables +=
             birdsRepository
                 .getWikiBirds()
-                .observeOn(schedulers.background())
                 .observeOn(schedulers.main())
                 .subscribeOn(schedulers.background())
                 .subscribe(
                     viewState::showBirds,
-                    viewState::showError
-                )
+                    viewState::showError,
+                    )
     }
 
     fun displayBird(bird: WikiBird) {
