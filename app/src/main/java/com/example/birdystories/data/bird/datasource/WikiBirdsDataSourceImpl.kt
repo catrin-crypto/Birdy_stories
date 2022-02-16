@@ -23,9 +23,11 @@ class WikiBirdsDataSourceImpl
             .filter { (wikiBirdName) -> wikiBirdName.exists }
             .flatMapIterable { list -> list }
             .map { wikiBirdName -> wikiBirdName.title }
-            .filter { s -> s.firstOrNull { it in 'А'..'Я' || it in 'а'..'я' } != null }
-            .filter { s -> !s.contains(':')}
-            .filter { s -> !s.startsWith("Список") }
+            .filter { s -> birdsListChecker(s) }
+//            .filter { s -> s.firstOrNull { it in 'А'..'Я' || it in 'а'..'я' } != null }
+//            .filter { s -> !s.contains(':') }
+//            .filter { s -> !s.contains(',') }
+//            .filter { s -> !s.startsWith("Список") }
             .toList()
             .toObservable()
             .flatMap { birdsNames ->
@@ -43,7 +45,17 @@ class WikiBirdsDataSourceImpl
                 )
             }
             .flatMapIterable { list -> list }
-            .filter{bird-> bird.extract!=null && bird.extract != ""}
-            .toSortedList{bird,bird2->bird.title.compareTo(bird2.title)}
+            .filter { bird -> bird.extract != null && bird.extract != "" }
+            .filter { s -> s.title != "Международный стандартный сериальный номер" }
+            .toSortedList { bird, bird2 -> bird.title.compareTo(bird2.title) }
             .toObservable()
+
+    companion object {
+        fun birdsListChecker(s: String): Boolean {
+            return (s.firstOrNull { it in 'А'..'Я' || it in 'а'..'я' } != null &&
+                    !s.contains(':') &&
+                    !s.contains(',') &&
+                    !s.startsWith("Список"))
+        }
+    }
 }
